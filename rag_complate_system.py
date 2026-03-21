@@ -26,7 +26,7 @@ RERANKER_MODEL = "BAAI/bge-reranker-base"  # 中文重排序模型
 # 作用：对检索结果进行精细排序，提升最终检索精度
 # 工作原理：将查询和文档输入模型，计算它们的相关性得分
 
-LLM_MODEL = "qwen2.5:0.5b"  # 本地大模型，通过 Ollama 运行
+LLM_MODEL = "qwen2.5:3b"  # 本地大模型，通过 Ollama 运行
 # 作用：基于检索到的上下文生成最终答案
 # 注意：需要先通过 `ollama pull qwen2.5:0.5b` 下载模型
 
@@ -375,7 +375,7 @@ def split_documents(documents):
         - Markdown策略：适合有清晰结构的技术文档，保持标题与正文关联
         - Recursive策略：通用性强，适合各种文档类型
     """
-    from langchain.text_splitter import (
+    from langchain_classic.text_splitter import (
         RecursiveCharacterTextSplitter,   # 递归文本分割器
         MarkdownHeaderTextSplitter        # Markdown标题分割器
     )
@@ -622,8 +622,8 @@ def init_bm25_retriever(_all_docs):
         - 精确匹配专业术语（如"错误码E-2049"）
         - 配合向量检索，形成混合检索
     """
-    from langchain.retrievers import BM25Retriever
-    from langchain.schema import Document
+    from langchain_community.retrievers import BM25Retriever
+    from langchain_core.documents import Document
     
     # 检查是否有文档
     if not _all_docs["documents"]:
@@ -702,7 +702,7 @@ def init_reranker():
         - 从大量候选文档中筛选最相关的
     """
     from langchain_community.cross_encoders import HuggingFaceCrossEncoder
-    from langchain.retrievers.document_compressors import CrossEncoderReranker
+    from langchain_classic.retrievers.document_compressors import CrossEncoderReranker
     
     # 创建交叉编码器模型
     # model_name: 模型名称
@@ -741,7 +741,7 @@ def build_final_retriever(_vector_db, _bm25_retriever, _reranker):
     检索链路：
         用户问题 → 向量检索 → (混合检索) → (重排序) → 最终结果
     """
-    from langchain.retrievers import EnsembleRetriever, ContextualCompressionRetriever
+    from langchain_classic.retrievers import EnsembleRetriever, ContextualCompressionRetriever
     
     # ========== 步骤1：创建基础向量检索器 ==========
     
