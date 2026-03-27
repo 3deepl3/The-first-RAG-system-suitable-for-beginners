@@ -14,23 +14,22 @@
 
 🏗️ 系统架构
 
-plaintext
 rag_system/
-├── config.py              # 配置文件（优先读取 .env）
-├── main.py                # Streamlit 主程序
-├── knowledge/             # 知识库模块
-│   ├── document_loader.py # 文档加载
-│   ├── chunker.py         # 文档分块
-│   └── knowledge_base.py  # 知识库管理
-├── retrieval/             # 检索模块
-│   ├── retriever.py       # 检索器（混合检索）
-│   └── reranker.py        # 重排序器
-├── generation/            # 生成模块
-│   ├── prompts.py         # 提示词模板
-│   └── qa_chain.py        # 问答链
-└── utils/                 # 工具模块
-    ├── file_utils.py      # 文件工具
-    └── system_utils.py    # 系统工具
+├── config.py           # 配置文件(优先读取 .env)
+├── main.py             # Streamlit 主程序
+├── knowledge/          # 知识库模块
+│   ├── document_loader.py   # 文档加载
+│   ├── chunker.py          # 文档分块
+│   └── knowledge_base.py   # 知识库管理
+├── retrieval/          # 检索模块
+│   ├── retriever.py        # 检索器(混合检索)
+│   └── reranker.py         # 重排序器
+├── generation/         # 生成模块
+│   ├── prompts.py          # 提示词模板
+│   └── qa_chain.py         # 问答链
+└── utils/             # 工具模块
+    ├── file_utils.py       # 文件工具
+    └── system_utils.py     # 系统工具
 
 
 🚀 快速开始
